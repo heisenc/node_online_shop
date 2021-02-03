@@ -7,11 +7,12 @@ const { validationResult } = require("express-validator/check");
 
 const User = require("../models/user");
 
+const NODEMAILER_API_KEY = process.env.NODEMAILER_API_KEY;
+
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
-      api_key:
-        "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",
+      api_key: NODEMAILER_API_KEY,
     },
   })
 );
@@ -39,8 +40,8 @@ exports.getLogin = (req, res, next) => {
     path: "/login",
     pageTitle: "Login",
     errorMessage: message,
-    oldInput: { email: "", password: ""},
-    validationErrors: []
+    oldInput: { email: "", password: "" },
+    validationErrors: [],
   });
 };
 
@@ -56,7 +57,7 @@ exports.getSignup = (req, res, next) => {
     pageTitle: "Signup",
     errorMessage: message,
     oldInput: { email: "", password: "", confirmPassword: "" },
-    validationErrors: []
+    validationErrors: [],
   });
 };
 
@@ -70,8 +71,8 @@ exports.postLogin = (req, res, next) => {
       path: "/login",
       pageTitle: "Login",
       errorMessage: errors.array()[0].msg,
-      oldInput: { email, password},
-      validationErrors: errors.array()
+      oldInput: { email, password },
+      validationErrors: errors.array(),
     });
   }
   User.findOne({ email })
@@ -81,9 +82,9 @@ exports.postLogin = (req, res, next) => {
         return res.status(422).render("auth/login", {
           path: "/login",
           pageTitle: "Login",
-          errorMessage: 'invalid email or password',
-          oldInput: { email, password},
-          validationErrors: []
+          errorMessage: "invalid email or password",
+          oldInput: { email, password },
+          validationErrors: [],
         });
       }
       return bcrypt
@@ -103,9 +104,9 @@ exports.postLogin = (req, res, next) => {
           return res.status(422).render("auth/login", {
             path: "/login",
             pageTitle: "Login",
-            errorMessage: 'invalid email or password',
-            oldInput: { email, password},
-            validationErrors: []
+            errorMessage: "invalid email or password",
+            oldInput: { email, password },
+            validationErrors: [],
           });
         })
         .catch((err) => {
@@ -140,7 +141,7 @@ exports.postSignup = (req, res, next) => {
       pageTitle: "Signup",
       errorMessage: errors.array()[0].msg,
       oldInput: { email, password, confirmPassword: req.body.confirmPassword },
-      validationErrors: errors.array()
+      validationErrors: errors.array(),
     });
   }
   bcrypt
