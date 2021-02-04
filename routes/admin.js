@@ -21,10 +21,10 @@ router.post(
   [
     body(
       "title",
-      "Please enter valid title with all string and at least 3 character"
+      "Please enter valid title with all string, at least 3 character and at most 100 character"
     )
       .isString()
-      .isLength({ min: 3 })
+      .isLength({ min: 3, max: 100 })
       .trim(),
     body("price").isFloat().withMessage("Please enter valid price"),
     // body("imageUrl").isURL().withMessage("Please enter valid URL"),
@@ -46,10 +46,10 @@ router.post(
   [
     body(
       "title",
-      "Please enter valid title with all string and at least 3 character"
+      "Please enter valid title with all string, at least 3 character and at most 100 character"
     )
       .isString()
-      .isLength({ min: 3 })
+      .isLength({ min: 3, max: 100 })
       .trim(),
     body("price").isFloat().withMessage("Please enter valid price"),
     // body("imageUrl").isURL().withMessage("Please enter valid URL"),

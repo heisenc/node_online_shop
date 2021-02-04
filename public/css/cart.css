@@ -22,3 +22,6 @@
   margin: 0;
 }
 
+.cart__item h1 {
+  width: 60%;
+}

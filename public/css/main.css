@@ -182,6 +182,10 @@ form {
   padding: 1rem;
 }
 
+.card__header {
+  height: 11rem;
+}
+
 .card__header h1,
 .card__content h1,
 .card__content h2,
