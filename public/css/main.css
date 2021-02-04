@@ -78,6 +78,10 @@ form {
   color: #ffeb3b;
 }
 
+.description__text {
+  white-space: pre-line;
+}
+
 .mobile-nav {
   width: 30rem;
   height: 100vh;
